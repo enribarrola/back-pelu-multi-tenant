@@ -2,10 +2,14 @@
 	"schemaVersion": 2,
 	"templateId": "node/20.11.1",
 	"dockerfileLines": [
+		"WORKDIR /app",
+		"COPY package.json package-lock.json ./",
+		"RUN npm install",
+		"COPY . ./",
+		"EXPOSE 3000",
 		"CMD [ \"npm\", \"run\", \"build\" ]",
 		"CMD [ \"npm\", \"start\" ]"
 	]
-	
 	
 	
 }
