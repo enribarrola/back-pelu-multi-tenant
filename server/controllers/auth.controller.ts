@@ -14,7 +14,9 @@ export const loginHandler = async (req: Request, res: Response) => {
 		const { usuario, contraseña } = req.body;
 		
 		const result: QueryResult = await db.query(sql, [usuario, contraseña]);
-	
+		if (result.rowCount === 0) {
+			return res.status(401).json({ error: "Usuario o contraseña incorrectos" });
+		}
 		
 		const token = jwt.sign(
 			{
