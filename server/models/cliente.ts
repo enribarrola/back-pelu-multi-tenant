@@ -21,7 +21,7 @@ export const ClienteModelo = {
 		if (!isNaN(Number(id))){
 			const sql = `SELECT * FROM clientes WHERE nro_documento = $1 or id_cliente = $2`;
 			result = await db.query(sql, [id,id]);
-			return result.rows[0];
+			return result.rows;
 		}else{
 			const sql = `SELECT * FROM clientes WHERE lower(fantasia) like lower($1) limit 5`;
 			result = await db.query(sql, [`%${id}%`]);
